@@ -1,0 +1,467 @@
+%-------------------------
+% Resume in Latex
+% Author : Vaishanth
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+% \usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}%\setmainfont{Times New Roman}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+
+\definecolor{cvblue}{HTML}{0E5484}
+\definecolor{black}{HTML}{130810}
+\definecolor{darkcolor}{HTML}{0F4539}
+\definecolor{cvgreen}{HTML}{3BD80D}
+\definecolor{taggreen}{HTML}{00E278}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{name}{black}
+\colorlet{tagline}{darkcolor}
+\colorlet{heading}{darkcolor}
+\colorlet{headingrule}{cvblue}
+\colorlet{accent}{darkcolor}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% \usepackage[T1]{fontenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{cochineal}
+% \usepackage{fourier}
+
+% \usepackage{fontspec}
+% \usepackage{polyglossia}
+% \setmainlanguage{german}
+% \setmainfont{Times New Roman}
+
+% serif
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+\usetikzlibrary{calc} % Useful for calculating coordinates, though not strictly necessary for simple bars
+
+% \pagestyle{fancy}
+% \fancyhf{}  % clear all header and footer fields
+% \fancyfoot{}
+% \renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+
+% \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{airforceblue}{rgb}{0, 0.50, 0.70}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-1pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\large#1} & \textbf{\small #2} \\
+      \textit{\large#3} & \textit{\small #4} \\
+      
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeSingleSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\large#1} & \textbf{\small #2} \\
+      
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.1in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+\newcommand{\skillbar}[3]{%
+    \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.5\linewidth} X}
+        #1 &
+        \begin{tikzpicture}[x=1pt, y=1pt]
+            \fill[lightgray!60] (0,0) rectangle (100,8); % Background bar
+            \fill[#3] (0,0) rectangle (#2*100,8);        % Foreground bar
+        \end{tikzpicture}
+    \end{tabularx}
+}
+
+%-------------------------------------------\usepackage{fontspec}
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%----------HEADING----------
+
+
+\begin{flushleft}
+    \begin{minipage}[c]{0.14\textwidth}
+        \includegraphics[width=\linewidth]{AMI26.jpg}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.82\textwidth}
+        {\Huge \textbf{Imtiaz Mamun}} \\[0.25em]
+        {\large \textit{Technical Lead Engineer}} \\[1em]
+        \begin{tabularx}{\textwidth}{@{}lX@{}}
+            \textbf{Phone:} & +880 171 513 7675 \\
+            \textbf{Email:} & \href{mailto:imtiazmamunantu@gmail.com}{\color{cvblue} imtiazmamunantu@gmail.com} \\
+            \textbf{LinkedIn: } & \href{https://linkedin.com/in/imtiaz-mamun-7467869a/}{\color{cvblue} linkedin.com/in/imtiaz-mamun-7467869a} \\
+            \textbf{Portfolio:} & \href{https://antu-mamun.github.io/}{\color{cvblue} antu-mamun.github.io} \\
+        \end{tabularx}
+    \end{minipage}
+\end{flushleft}
+\begin{justify}
+Technical Lead Engineer specializing in Solution Architecture, Backend Engineering, AI, Android, and Full-Stack Development. Experienced in architecting scalable cloud-native systems, leading engineering teams, and delivering secure, high-performance enterprise solutions. Proven expertise in designing microservices, distributed systems, and enterprise APIs while driving DevOps, CI/CD, and engineering best practices. Passionate about transforming complex business challenges into innovative solutions through technical leadership and architectural excellence.
+\end{justify}
+%-----------EXPERIENCE-----------
+\section{\textcolor{airforceblue}{WORK EXPERIENCE}}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+    {\textcolor{cvblue}{Technical Lead Engineer}}{\textcolor{cvblue}{Technology Department}}
+    {\textcolor{cvblue}{The Data Island, Dhaka, Bangladesh}}{\textcolor{cvblue}{Nov 2025 - Present}}
+    \resumeItemListStart
+        \resumeItem{\normalsize \textbf{Led Backend, Frontend, and Mobile development}, building scalable microservices and reducing technical debt.}
+        \resumeItem{\normalsize \textbf{Designed end-to-end solutions as Solution Architect}, designing scalable and cost-efficient systems.}
+        \resumeItem{\normalsize \textbf{Managed database architecture}, ensuring performance and data integrity.}
+        \resumeItem{\normalsize \textbf{Ensured security, performance, and high availability} across systems.}
+        \resumeItem{\normalsize \textbf{Led CI/CD, DevOps, and cloud deployments}.}
+        \resumeItem{\normalsize \textbf{Led and mentored 10+ engineers, including the AI team}.}
+    \resumeItemListEnd
+    \vspace{2pt}
+    
+\resumeSubheading
+    {\textcolor{cvblue}{Founder \& CEO}}{\textcolor{cvblue}{Proprietor}}
+    {\textcolor{cvblue}{Aarbaah Digital Solution, Dhaka, Bangladesh}}{\textcolor{cvblue}{Apr 2024 - Present}}
+    \resumeItemListStart
+        \resumeItem{\normalsize \textbf{Founded and scaled} a digital solutions company delivering web and software services.}
+        \resumeItem{\normalsize \textbf{Led product strategy and architecture} for client and internal solutions.}
+        \resumeItem{\normalsize \textbf{Managed clients and teams}, driving delivery quality and business growth.}
+    \resumeItemListEnd
+    \vspace{2pt}
+    
+\resumeSubheading
+  {\textcolor{cvblue}{Software Engineer (Officer)}}{\textcolor{cvblue}{Technology and Innovation}}
+  {\textcolor{cvblue}{United Commercial Bank PLC, Gulshan, Dhaka, Bangladesh}}{\textcolor{cvblue}{Mar 2025 - Sep 2025}}
+  \resumeItemListStart
+        \resumeItem{\normalsize \textbf{Led full-stack and microservices development}, building scalable and high-performance systems.}
+        \resumeItem{\normalsize \textbf{Designed and automated workflows} while managing data systems for business insights.}
+        \resumeItem{\normalsize \textbf{Ensured secure architecture} by collaborating with UX/UI and enforcing financial-grade security practices.}
+  \resumeItemListEnd
+  \vspace{2pt}
+
+\resumeSubheading
+  {\textcolor{cvblue}{Software Engineer}}{\textcolor{cvblue}{IT Division}}
+  {\textcolor{cvblue}{upay (UCB Fintech Company Limited), Gulshan, Dhaka, Bangladesh}}{\textcolor{cvblue}{Oct 2022 - Feb 2025}}
+  \resumeItemListStart
+        \resumeItem{\normalsize \textbf{Led full-stack and microservices development}, building scalable and high-performance systems.}
+        \resumeItem{\normalsize \textbf{Designed and automated workflows} while managing data systems for business insights.}
+        \resumeItem{\normalsize \textbf{Ensured secure architecture} by collaborating with UX/UI and enforcing financial-grade security practices.}
+  \resumeItemListEnd
+  \vspace{2pt}
+
+\resumeSubheading
+  {\textcolor{cvblue}{Full-Stack Programmer (Officer)}}{\textcolor{cvblue}{Multimedia Department}}
+  {\textcolor{cvblue}{Beximco Pharmaceuticals Limited, Dhanmondi, Dhaka, Bangladesh}}{\textcolor{cvblue}{Jun 2018 - Sep 2022}}
+  \resumeItemListStart
+        \resumeItem{\normalsize \textbf{Developed and delivered} in-house and promotional full-stack applications end-to-end.}
+        \resumeItem{\normalsize \textbf{Designed system workflows} and collaborated with UX/UI for scalable architecture.}
+        \resumeItem{\normalsize \textbf{Optimized data processing and reliability}, enhancing efficiency and system performance.}
+  \resumeItemListEnd
+  \vspace{5pt} 
+
+\resumeSubHeadingListEnd
+\vspace{-7pt}
+
+%-----------EDUCATION-----------
+\section{\textcolor{airforceblue}{EDUCATION}}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {United International University}{United City, Madani Ave, Dhaka 1212}
+      {Bachelor of Science (B.Sc)}{Sep 2013 - Feb 2018} \\[0.7em]
+      {Computer Science and Engineering} \\[0.8em]
+    \vspace{-8pt}
+     \resumeSubheading
+      {Government Bangla College}{Mirpur, Dhaka, Bangladesh}
+      {Higher Secondary Certificate}{Jun 2011 - March 2013} \\[0.7em]
+      {Science (with Higher Math and Biology)} \\[0.8em]
+    \vspace{-8pt}
+     \resumeSubheading
+      {Rajshahi Govt. Model School and College}{Rajshahi, Bangladesh}
+      {Secondary School Certificate}{Jan 2009 - Feb 2011} \\[0.7em]
+      {Science (with Higher Math and Biology)}
+  \resumeSubHeadingListEnd
+
+%-----------Skill Evaluation---------------
+\section{\textcolor{airforceblue}{SKILL EVALUATION}}
+    \begin{tabularx}{\textwidth}{X X} 
+        \skillbar{\textbf{\normalsize{Front-end Development:}}}{0.95}{cvblue!40} % 90%
+        &
+        \skillbar{\textbf{\normalsize{System Architecture:}}}{0.95}{cvblue!40} % 90%
+    \end{tabularx}
+    \\ \vspace{4pt}
+    \begin{tabularx}{\textwidth}{X X} 
+        \skillbar{\textbf{\normalsize{Back-end Development:}}}{0.95}{cvblue!40}   % 70%
+        &
+        \skillbar{\textbf{\normalsize{DevOps Engineering:}}}{0.92}{cvblue!40}   % 70%
+    \end{tabularx}
+    \\ \vspace{4pt}
+    \begin{tabularx}{\textwidth}{X X} 
+        \skillbar{\textbf{\normalsize{UI / UX Design:}}}{0.88}{cvblue!40}   % 70%
+        &
+        \skillbar{\textbf{\normalsize{AI / Machine Learning:}}}{0.88}{cvblue!40} % 90%
+    \end{tabularx}
+\vspace{-10pt}
+
+%-----------PROGRAMMING SKILLS-----------
+\section{\textcolor{airforceblue}{TECHNICAL SKILLS}}
+     \begin{itemize}[leftmargin=0.1in]
+        \small{\item{
+         \textbf{\normalsize{Programming Languages:}}{ \normalsize{Python, TypeScript, JavaScript, Java, PHP, C and C++, Shell Scripting}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Front-end Development:}}{ \normalsize{Next.js, React.js, Tailwind CSS, Redux, jQuery, Ajax, Bootstrap, HTML, CSS, SCSS, SVG, Cross-Browser Compatibility}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Back-end Development:}}{ \normalsize{FastAPI, Django, Node.js, Express.js, Nest.js, Meteor.js, PHP, JSP}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Native Mobile Application:}}{ \normalsize{Android Native Programming (Java + Kotlin), Google Play Console and APIs, Augmented Reality, Android Studio and Unity}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Database Management:}}{ \normalsize{PostgreSQL, Firebase, MongoDB, Redis, DynamoDB, SQLite, MySQL}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Automation Expertise:}}{ \normalsize{Docker, Kubernetes, ORM, Celery, JWT, OAuth2, ETL, Cron Jobs, Nginx, Apache, Gunicorn, PM2, Unit Test, Arduino Programming, IoT}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Cloud Service Management:}}{ \normalsize{Vercel, GCP, AWS, Hetzner, DigitalOcean, Namecheap}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{CI/CD Pipeline:}}{ \normalsize{GitLab, GitHub Actions, Bitbucket Pipelines}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Machine Learning:}}{ \normalsize{Natural Language Processing, TensorFlow, Artificial Neural Network, Pattern Recognition, Deep Learning, NumPy, Pandas, Scikit-learn}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Data Format:}}{ \normalsize{JSON, YAML, XML, CSV, HDF5, XLSX}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{UI/UX and Prototyping:}}{ \normalsize{Figma}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Industrial Skills:}}{ \normalsize{Jira, Trello, Zoho Projects, Agile Development, SDLC phases, SWOT Analysis, Use Case and UML Diagram, Analytical, Statistical, Flexible and Quick Learner}} \\
+          \vspace{1pt}
+          }}
+          \small{\item{
+         \textbf{\normalsize{Operating System:}}{ \normalsize{MacOS, Linux, Windows}} \\
+          \vspace{1pt}
+         % copy and paste above textbf block to add more 
+         }}
+     \end{itemize}
+\vspace{-1pt}
+
+%-----------Research---------------
+\section{\textcolor{airforceblue}{RESEARCH \& PUBLICATIONS}}
+\resumeItemListStart
+    \resumeItem{\normalsize \textbf{IEEE Publication:} Event Detection and Knowledge Mining from Unlabeled Bengali News Article \hfill \href{https://ieeexplore.ieee.org/document/9350891}{\color{cvblue}{Link}}}
+    \resumeItem{\normalsize \textbf{B.Sc Thesis:} Event Detection and Violence Recognition \hfill \url{https://www.researchgate.net/publication/374331912_Event_Detection_and_Violence_Recognition}}
+\resumeItemListEnd
+\vspace{1pt}
+
+\section{\textcolor{airforceblue}{PROFESSIONAL PROJECTS}}
+    \resumeItemListStart
+        \resumeItem{\textbf{\normalsize{ULens – Field Force Management System}} \\
+        \textbf{Technologies:} Python, FastAPI, MongoDB, Motor (async), Docker, AWS Rekognition, S3, SQS, Flutter, Next.js \\
+        \textbf{Highlights:} Built AI-powered field force and ERP platform with GPS validation, AI visit analysis for Field Force, POSM tracking, OTP auth, and attendance/leave management with role-based reporting. \\
+        \textbf{Company:} Unilever Bangladesh Limited (UBL)
+        }
+        \resumeItem{\textbf{\normalsize{Bulk Onboard and Salary Disbursement}} \\
+        \textbf{Technologies:} Python, Django, ReactJS, PostgreSQL, Docker, Kubernetes \\
+        \textbf{Highlights:} Web app for seamless onboarding, secure bulk uploads, tokenized salary disbursement, dynamic ledger reports, and role-based access control. \\
+        \textbf{Company:} UCB Fintech Company Limited (upay)
+        }
+        \resumeItem{\textbf{\normalsize{Service Operations and Reporting}} \\
+        \textbf{Technologies:} PHP 7, jQuery, Ajax, PostgreSQL \\
+        \textbf{Highlights:} Real-time dashboards with charts and logs, microservice-driven bulk reporting, multilevel transaction monitoring for merchants, agents, and customers. \\
+        \textbf{Company:} UCB Fintech Company Limited (upay)
+        }
+        \resumeItem{\textbf{\normalsize{Digital Prescription}} \\
+        \textbf{Technologies:} Python, Tkinter, SQLite \\
+        \textbf{Highlights:} Desktop tool for creating, printing, and storing prescriptions with smart medicine suggestions and historical patient data tracking. \\
+        \textbf{Company:} Beximco Pharmaceuticals PLC (BPL)
+        }
+        % \resumeItem{\textbf{\normalsize{Oncology Remedy \& Prescription}} \\
+        % \textbf{Technologies:} Node.js, Meteor.js, MongoDB \\
+        % \textbf{Highlights:} Manages patient cycles, automates task assignments to sales team, schedules alerts, and tracks ongoing treatment progress. \\
+        % \textbf{Company:} Beximco Pharmaceuticals PLC (BPL)
+        % }
+    \resumeItemListEnd
+
+\section{\textcolor{airforceblue}{PERSONAL PROJECTS}}
+    \resumeItemListStart
+        \resumeItem{\textbf{\normalsize{Bengal Aid E-Commerce Platform}} \\
+        \textbf{Technologies:} Python, Typescript, Next.js, FastAPI, REST APIs, Payment Gateway, Firebase Realtime Database \\
+        \textbf{Highlights:} Architected scalable e-commerce system with optimized UX, secure payments, and efficient order management.
+        \textbf{Live:} \href{https://www.bengalaid.com/}{\color{cvblue}\underline{bengalaid.com}}
+        }
+        \resumeItem{\textbf{\normalsize{Clinic \& Hospital Management System}} \\
+        \textbf{Technologies:} Next.js, TypeScript, FastAPI, Firebase Realtime Database, Shadcn UI \\
+        \textbf{Highlights:} Built scalable healthcare platform with patient registration, diagnostic test management, cabin-bed management, billing, role-based access, and real-time analytics/reporting. \\
+        \textbf{Live:} \href{https://acare.aarbaah.com/}{\color{cvblue}\underline{acare.aarbaah.com}} (Demo credentials -  Email: admin@aarbaah.com, Password: admin@aarbaah.com)
+        }
+        \resumeItem{\textbf{\normalsize{Appointment Service Manager}} \\
+        \textbf{Technologies:} React, Redux, Styled-components, React Router, XLSX.js \\
+        \textbf{Highlights:} Provides dynamic appointment scheduling with responsive UI across devices. Features real-time updates and report export to Excel for administrative tasks. \\
+        \textbf{Demo:} \href{https://doctor-calendar.vercel.app/}{\color{cvblue}\underline{doctor-calendar.vercel.app}}
+        }
+        
+        % \resumeItem{\textbf{\normalsize{Outlet and Inventory Management for E-commerce}} \\
+        % \textbf{Technologies:} React, Redux, Styled-components, Node.js 
+        % \\
+        % \textbf{Highlights:} Real-time inventory control across outlets with procurement-to-sales tracking. Enables demand forecasting, efficient replenishment, and integrates with existing systems for agility and profitability. \\
+        % \textbf{Demo:} \href{https://outlet-inventory.vercel.app/}{\color{cvblue}\underline{outlet-inventory.vercel.app}}
+        % }
+        \resumeItem{\textbf{\normalsize{SaaS Product Suite (KYC and Biometric Intelligence)}} \\
+        \textbf{Technologies:} Next.js, Tailwind CSS, Node.js, JavaScript \\
+        \textbf{Highlights:} A collection of modular SaaS solutions designed to streamline onboarding and verification workflows. Includes: \\
+        \vspace{-1pt}
+        \begin{itemize}
+            \item Bank Account Onboarding Form
+            \item Printable KYC Form
+            \item Face Liveness Detection and Facial Emotion Recognition (happy, sad, angry, etc.)
+            \item OCR-based Text Detection from Captured Images
+            \item Speech-to-Text Conversion Module
+        \end{itemize}
+        \vspace{-8pt}
+        \textbf{Demo:} \href{https://saas-products-nine.vercel.app/}{\color{cvblue}\underline{saas-products-nine.vercel.app}}
+        }
+        \resumeItem{\textbf{\normalsize{Yield Booster}} \\
+        \textbf{Technologies:} Java, JSP, Spring MVC, MySQL \\
+        \textbf{AI Modules:} K-Means Clustering, KNN Classifier \\
+        \textbf{Highlights:} Predicts crop types using soil nutrients, pH, climate data; clusters crops by season, cost, and yield potential for optimized farming.
+        }
+        \resumeItem{\textbf{\normalsize{Auto Smart City}} \\
+        \textbf{Technologies:} Android, Java, JSP, Spring MVC, Firebase, MySQL \\
+        \textbf{AI Modules:} Ant Colony Algorithm, TF-IDF, Priority Scheduling, Reinforcement Learning \\
+        \textbf{Highlights:} Real-time route optimization to reduce traffic using GPS data. Alerts users on high-traffic routes and dynamically assigns routes based on start time, location, and destination distance.
+        }
+    \resumeItemListEnd
+
+
+\section{\textcolor{airforceblue}{LANGUAGE PROFICIENCY}}
+    \begin{tabularx}{\linewidth}{>{\bfseries}p{0.15\linewidth} X}
+        Bengali         & Native proficiency \\
+        English         & Professional working proficiency \\
+        Hindi \& Urdu   & Conversational proficiency (Listening and Speaking)
+    \end{tabularx}
+
+\section{\textcolor{airforceblue}{PERSONAL INFORMATION}}
+    \begin{tabularx}{\linewidth}{@{}>{\bfseries}l X@{}}
+        Nationality: & Bangladeshi \\
+        Home Town: & Puthia, Rajshahi \\
+        Marital Status: & Married \\
+        Present Address:\hspace{0.5em} & Adabar, Dhaka-1207 \\
+        % Permanent Address: & Puthia, Rajshahi \\  % Uncomment if needed
+        Interests: & Chess, Table Tennis, Guitar, Planting, Technology, International Politics \\
+    \end{tabularx}
+
+\section{\textcolor{airforceblue}{REFERENCES}}
+    \begin{tabularx}{\linewidth}{@{}X X@{}}
+        \textbf{MOHAMMAD NURUL HUDA} & \textbf{MD. FARIDUL ALAM} \\
+        Vice President & Deputy Director \\
+        Bangladesh Computer Society & Department of Social Services \\
+        Phone: +8801673476433 & Phone: +8801819333756 \\
+        Email: \href{mailto:mnh@cse.uiu.ac.bd}{mnh@cse.uiu.ac.bd} & Email: {faridulalam2000@yahoo.com} \\
+    \end{tabularx}
+
+\end{document}
